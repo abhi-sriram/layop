@@ -65,13 +65,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: makePage(
                       text: "Support",
                       description:
-                          "Lorem ipsum dolor sit amet dfnwriuf ehfbq neifhebv bvohviho iho hoih hs hc"),
+                          "Supporting education of children"),
                 ),
                 Container(
                   child: makePage(
                       text: "Motivation",
                       description:
-                          "Lorem ipsum dolor sit amet dfnwriuf ehfbq neifhebv bvohviho iho hoih hs hc"),
+                          "Motivate them through assignments"),
                 ),
                 Container(
                     child: Column(
@@ -80,7 +80,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     makePage(
                         text: "Fun",
                         description:
-                            "Lorem ipsum dolor sit amet dfnwriuf ehfbq neifhebv bvohviho iho hoih hs hc"),
+                            "Make learning fun"),
                     const SizedBox(
                       height: 20,
                     ),

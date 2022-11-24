@@ -10,10 +10,8 @@ class SyllabusPage extends StatefulWidget {
 
 class _SyllabusPageState extends State<SyllabusPage> {
   Map<String, List<String>> syllabus = {
-    'unit1': ['topic1', 'topic2', 'topic3'],
-    'unit2': ['topic1', 'topic2', 'topic3'],
-    'unit3': ['topic1', 'topic2', 'topic3'],
-    'unit4': ['topic1', 'topic2', 'topic3'],
+    'unit1': ['addition', 'multiplication'],
+    'unit2': ['addition', 'multiplication'],
   };
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,11 @@ class _SyllabusPageState extends State<SyllabusPage> {
               i++) {
             topics.add(
               Container(
-                margin: const EdgeInsets.only(left: 20, top: 5, bottom: 5, right: 5),
+                margin: const EdgeInsets.only(
+                    left: 20, top: 5, bottom: 5, right: 5),
                 width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.purple.shade100,
                   borderRadius: BorderRadius.circular(5),
@@ -47,7 +47,8 @@ class _SyllabusPageState extends State<SyllabusPage> {
               Card(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   decoration: BoxDecoration(
                     color: AppConstant.secondaryColor,
                     borderRadius: BorderRadius.circular(5),
