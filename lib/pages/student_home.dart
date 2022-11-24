@@ -11,7 +11,6 @@ import 'package:layop/pages/scribble/scribble_pad.dart';
 import 'package:layop/pages/syllabus_page.dart';
 import 'package:layop/service/auth_service.dart';
 import 'package:layop/util/app_constant.dart';
-
 import 'package:layop/widget/k_height.dart';
 import 'package:layop/widget/k_text.dart';
 
@@ -47,6 +46,35 @@ class _ParentHomeState extends State<ParentHome> {
               builder: (context) => Profil(),
             ));
         break;
+      case 'exam':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Exams(),
+            ));
+        break;
+      case 'home':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ParentHome(),
+            ));
+        break;
+      case 'syllabus':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SyllabusPage(),
+            ));
+        break;
+      case 'teacher':
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyTeacher(),
+            ));
+        break;
+
       default:
     }
   }
@@ -100,13 +128,11 @@ class _ParentHomeState extends State<ParentHome> {
                       size: AppConstant.leadingText,
                       weight: FontWeight.w500),
                   KHeight(height: AppConstant.largeSpace),
-
                   KText(
                     text: "Welcome and learn at your own pace",
                     size: AppConstant.leadingText,
                   ),
                   KHeight(height: AppConstant.largeSpace),
-
                   Divider(
                     thickness: 1,
                     endIndent: 100,
@@ -117,135 +143,57 @@ class _ParentHomeState extends State<ParentHome> {
                       size: AppConstant.normalText,
                       weight: FontWeight.w500),
                   KHeight(height: AppConstant.largeSpace),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SyllabusPage(),
-                          ));
-                    },
-                    child: Card(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        decoration: BoxDecoration(
-                          color: AppConstant.secondaryColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text('Syllabus'),
-                      ),
-                    ),
-                  ),
-                  //                 Row(children: [
-                  // MenuStudent(),
-                  //   MenuStudent(),
-                  //                 ],),
-                  // MenuStudent(
-                  //     imagePath: 'assets/images/lesson.png',
-                  //     titre: "Syllabus",
-                  //     function: () {
-
-                  //     },
-                  //     description: "learn your lessons"),
+                  MenuStudent(
+                      imagePath: 'assets/images/lesson.png',
+                      titre: "Syllabus",
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SyllabusPage(),
+                            ));
+                      },
+                      description: "learn your lessons"),
                   KHeight(height: AppConstant.largeSpace),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                  MenuStudent(
+                      function: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const Exams(),
-                          ));
-                    },
-                    child: Card(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        decoration: BoxDecoration(
-                          color: AppConstant.secondaryColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text('Exams'),
-                      ),
-                    ),
-                  ),
-                  // MenuStudent(
-                  //     function: () => Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //           builder: (context) => const Exams(),
-                  //         )),
-                  //     imagePath: 'assets/images/exams.png',
-                  //     titre: "Exams",
-                  //     description: "for test learn your lessons"),
+                          )),
+                      imagePath: 'assets/images/exams.png',
+                      titre: "Exams",
+                      description: "to test your performance"),
                   KHeight(height: AppConstant.largeSpace),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                  MenuStudent(
+                      function: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const ProgressPage(),
-                          ));
-                    },
-                    child: Card(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        decoration: BoxDecoration(
-                          color: AppConstant.secondaryColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text('Progress'),
-                      ),
-                    ),
-                  ),
+                          )),
+                      imagePath: 'assets/images/progress.png',
+                      titre: "Progress",
+                      description: "to see your improuvement"),
                   KHeight(height: AppConstant.largeSpace),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                  MenuStudent(
+                      function: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => DigitalInkView(),
-                          ));
-                    },
-                    child: Card(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        decoration: BoxDecoration(
-                          color: AppConstant.secondaryColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text('Scribble Pad'),
-                      ),
-                    ),
-                  ),
+                          )),
+                      imagePath: 'assets/images/exams.png',
+                      titre: "Scribble pad",
+                      description: "have fun"),
                   KHeight(height: AppConstant.largeSpace),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                  MenuStudent(
+                      function: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const OcrPage(),
-                          ));
-                    },
-                    child: Card(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        decoration: BoxDecoration(
-                          color: AppConstant.secondaryColor,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text('OCR - Text to Audio'),
-                      ),
-                    ),
-                  ),
+                            builder: (context) => OcrPage(),
+                          )),
+                      imagePath: 'assets/images/exams.png',
+                      titre: "Image to Text",
+                      description: "play with images"),
                 ],
               ),
             ],
@@ -337,21 +285,16 @@ class MenuStudent extends StatelessWidget {
     return GestureDetector(
       onDoubleTap: function,
       child: Container(
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
-        width: double.infinity,
         height: 120,
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(25)),
-            // gradient: LinearGradient(begin: Alignment.bottomCenter, colors: [
-            //   Colors.purple.shade700,
-            //   Colors.purple.shade500,
-            //   Colors.purple.shade300
-            // ])
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -380,7 +323,8 @@ class MenuStudent extends StatelessWidget {
                   )
                 ],
               ),
-              Image.asset(imagePath)
+              GestureDetector(
+                  onTap: () => function, child: Image.asset(imagePath))
             ],
           ),
         ),

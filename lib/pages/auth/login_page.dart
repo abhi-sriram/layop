@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:layop/pages/student_home.dart';
-import 'package:layop/service/auth_service.dart';
 import 'package:layop/util/app_constant.dart';
 
 import 'package:layop/widget/k_button.dart';
@@ -18,44 +15,56 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
-  String error = "";
-  bool loading = false;
+  TextEditingController textEmailController = TextEditingController();
+  TextEditingController textPasswordController = TextEditingController();
+  String? errorMessage = '';
+  bool? isLoading = false;
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    textEmailController.dispose();
+    textPasswordController.dispose();
     super.dispose();
   }
 
-  void login() async {
-    setState(() {
-      loading = true;
-    });
-    try {
-      await AuthService.signIn(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim());
-    } catch (e) {
-      setState(() {
-        error = e.toString();
-      });
-      log(e.toString());
-    }
-    setState(() {
-      loading = false;
-    });
-  }
+  // Future<void> login() async {
+  //   showDialog(
+  //       barrierDismissible: false,
+  //       context: context,
+  //       builder: (conext) => AlertDialog(
+  //             title: Column(children: const <Widget>[
+  //               Text("please wait ..."),
+  //               KHeight(height: 10),
+  //               LinearProgressIndicator(),
+  //             ]),
+  //           ));
+  //   try {
+  //     await AuthService.signIn(
+  //         email: textEmailController.text,
+  //         password: textPasswordController.text);
+  //     navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  //     // ignore: use_build_context_synchronously
+  //     Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => const ParentHome(),
+  //         ));
+  //   } on FirebaseAuthException catch (e) {
+  //     setState(() {
+  //       errorMessage = e.message;
+  //     });
+
+  //     ScaffoldMessenger.of(context)
+  //         .showSnackBar(SnackBar(content: Text(errorMessage.toString())));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
                 horizontal: AppConstant.horizontalPagePadding,
                 vertical: AppConstant.verticalPagePadding),
             child: SingleChildScrollView(
@@ -83,23 +92,23 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                KHeight(height: AppConstant.largeSpace),
+                const KHeight(height: AppConstant.largeSpace),
                 KFormField(
-                  controller: _emailController,
+                  controller: textEmailController,
                   hint: "Enter your email",
                 ),
-                KHeight(height: AppConstant.largeSpace),
+                const KHeight(height: AppConstant.largeSpace),
                 KFormField(
-                  controller: _passwordController,
+                  controller: textPasswordController,
                   hint: "Enter your password",
                 ),
-                KHeight(height: AppConstant.largeSpace),
-                if (loading) const CircularProgressIndicator(),
-                if (!loading) KButtonPrimary(text: "Login", function: login),
-                KText(
-                  text: error,
-                  color: AppConstant.dangerColor,
-                ),
+                const KHeight(height: AppConstant.largeSpace),
+                KButtonPrimary(
+                    text: "Login",
+                    function: () => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ParentHome()))),
               ]),
             )),
       ),

@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:layop/util/app_constant.dart';
 import 'package:layop/widget/k_height.dart';
 import 'package:layop/widget/k_text.dart';
-import '../../../widget/hamburger.dart';
-import '../../../widget/k_button.dart';
-import 'history_daily_details.dart';
 import 'history_exam_details.dart';
-import 'history_page.dart';
 
 class HistoryExamPage extends StatefulWidget {
   const HistoryExamPage({super.key});
@@ -46,11 +42,18 @@ class _HistoryExamState extends State<HistoryExamPage> {
     ];
     List<Widget> result = <Widget>[];
     for (var date in dates) {
-      result.add(ElevatedButton(
-        onPressed: () {
-          navigateToDetails(date);
+      result.add(ListTile(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HistoryExamDetails(
+                        date: date,
+                      ))) ;
         },
-        child: Text(date),
+        leading: const Icon(Icons.calendar_month),
+        title: KText(text: date),
+        trailing: const Icon(Icons.arrow_forward_ios),
       ));
       result.add(const KHeight(height: AppConstant.largeSpace));
     }

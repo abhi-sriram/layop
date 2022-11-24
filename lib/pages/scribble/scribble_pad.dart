@@ -160,7 +160,7 @@ class _DigitalInkViewState extends State<DigitalInkView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Digital Ink Recognition')),
+      appBar: AppBar(title: const Text('Digital Ink Recognition')),
       body: SafeArea(
         child: Column(
           children: [
@@ -200,26 +200,26 @@ class _DigitalInkViewState extends State<DigitalInkView> {
             if (_recognizedText.isNotEmpty)
               Text(
                 'Recognized as:\n $_recognizedText',
-                style: TextStyle(fontSize: 23),
+                style: const TextStyle(fontSize: 23),
                 textAlign: TextAlign.center,
               ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    child: Text('Read Text'),
+                    child: const Text('Read Text'),
                     onPressed: _recogniseText,
                   ),
                   ElevatedButton(
-                    child: Text('Clear Pad'),
+                    child: const Text('Clear Pad'),
                     onPressed: _clearPad,
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             // Padding(
             //   padding: EdgeInsets.symmetric(horizontal: 16),
             //   child: Row(
@@ -291,7 +291,7 @@ class _DigitalInkViewState extends State<DigitalInkView> {
   Future<void> _recogniseText() async {
     showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) => const AlertDialog(
               title: Text('Recognizing'),
             ),
         barrierDismissible: true);

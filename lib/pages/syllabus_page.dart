@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:layop/util/app_constant.dart';
 
 class SyllabusPage extends StatefulWidget {
@@ -21,7 +19,7 @@ class _SyllabusPageState extends State<SyllabusPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Syllabus'),
+        title: const Text('Syllabus'),
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
@@ -32,9 +30,9 @@ class _SyllabusPageState extends State<SyllabusPage> {
               i++) {
             topics.add(
               Container(
-                margin: EdgeInsets.only(left: 20, top: 5, bottom: 5, right: 5),
+                margin: const EdgeInsets.only(left: 20, top: 5, bottom: 5, right: 5),
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.purple.shade100,
                   borderRadius: BorderRadius.circular(5),
@@ -49,7 +47,7 @@ class _SyllabusPageState extends State<SyllabusPage> {
               Card(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   decoration: BoxDecoration(
                     color: AppConstant.secondaryColor,
                     borderRadius: BorderRadius.circular(5),

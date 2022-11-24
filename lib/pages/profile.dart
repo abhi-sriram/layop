@@ -1,8 +1,4 @@
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:layop/service/auth_service.dart';
 import 'package:layop/util/app_constant.dart';
 import 'package:layop/widget/k_height.dart';
 import 'package:layop/widget/k_text.dart';

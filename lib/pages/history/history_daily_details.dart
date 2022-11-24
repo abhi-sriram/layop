@@ -7,7 +7,6 @@ import 'package:layop/widget/k_width.dart';
 import 'package:layop/widget/pie_chart_assesment.dart';
 import 'package:layop/widget/pie_indicator.dart';
 
-
 class HistoryDailyDetails extends StatefulWidget {
   final String? date;
   const HistoryDailyDetails({super.key, this.date});
@@ -37,6 +36,8 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const KText(
+                color: AppConstant.titleTextColor,
+                weight: FontWeight.bold,
                 text: "Daily History",
                 size: AppConstant.titleText,
               ),
@@ -45,8 +46,11 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
                 text: "Date: ${widget.date}",
                 size: AppConstant.titleText,
               ),
+              Divider(),
               const KHeight(height: AppConstant.largeSpace),
               const KText(
+                color: AppConstant.titleTextColor,
+                weight: FontWeight.bold,
                 text: "Assessment",
                 size: AppConstant.titleText,
               ),
@@ -56,6 +60,8 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
                   const KText(
                     text: "Topic : ",
                     size: AppConstant.titleText,
+                    color: AppConstant.tinyTextColor,
+                    weight: FontWeight.bold,
                   ),
                   const k_width(
                     width: 20,
@@ -70,6 +76,8 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
               Row(
                 children: [
                   const KText(
+                    color: AppConstant.tinyTextColor,
+                    weight: FontWeight.bold,
                     text: "Methodology : ",
                     size: AppConstant.titleText,
                   ),
@@ -87,30 +95,37 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
                 children: [
                   const KText(
                     text: "Assigned Date : ",
+                    color: AppConstant.tinyTextColor,
+                    weight: FontWeight.bold,
                     size: AppConstant.titleText,
                   ),
                   const k_width(
                     width: 20,
                   ),
                   KText(
-                    text:' a.assignedDate',
+                    text: ' a.assignedDate',
                     size: AppConstant.titleText,
                   ),
                 ],
               ),
               const KHeight(height: AppConstant.largeSpace),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const KText(
                     text: "Physical Prompts : ",
+                    color: AppConstant.tinyTextColor,
+                    weight: FontWeight.bold,
                     size: AppConstant.titleText,
                   ),
                   const k_width(
                     width: 20,
                   ),
-                  KText(
-                    text: 'a.physicalPrompts.toString()',
-                    size: AppConstant.titleText,
+                  Flexible(
+                    child: KText(
+                      text: 'a.physicalPrompts.toString()',
+                      size: AppConstant.titleText,
+                    ),
                   ),
                 ],
               ),
@@ -119,6 +134,8 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
                 children: [
                   const KText(
                     text: "Verbal Prompts : ",
+                    color: AppConstant.tinyTextColor,
+                    weight: FontWeight.bold,
                     size: AppConstant.titleText,
                   ),
                   const k_width(
@@ -130,6 +147,7 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
                   ),
                 ],
               ),
+              KHeight(height: AppConstant.largeSpace),
               // Padding(
               //   padding: const EdgeInsets.symmetric(
               //       vertical: AppConstant.verticalPagePadding),
@@ -137,17 +155,22 @@ class _HistoryDailyDetailsState extends State<HistoryDailyDetails> {
               //     children: getQuestions(),
               //   ),
               // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * .4,
-                    height: 200,
-                    child: PieChart(PieChartData(
-                        centerSpaceRadius: 40, sections: getSection())),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .4,
+                        height: 200,
+                        child: PieChart(PieChartData(
+                            centerSpaceRadius: 40, sections: getSection())),
+                      ),
+                      const PieIndicator()
+                    ],
                   ),
-                  const PieIndicator()
-                ],
+                ),
               ),
             ]),
           ),

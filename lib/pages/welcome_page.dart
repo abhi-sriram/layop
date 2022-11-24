@@ -63,13 +63,13 @@ class _WelcomePageState extends State<WelcomePage> {
               children: <Widget>[
                 Container(
                   child: makePage(
-                      text: "Du travail",
+                      text: "Support",
                       description:
                           "Lorem ipsum dolor sit amet dfnwriuf ehfbq neifhebv bvohviho iho hoih hs hc"),
                 ),
                 Container(
                   child: makePage(
-                      text: "Du travail",
+                      text: "Motivation",
                       description:
                           "Lorem ipsum dolor sit amet dfnwriuf ehfbq neifhebv bvohviho iho hoih hs hc"),
                 ),
@@ -78,7 +78,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     makePage(
-                        text: "Du travail",
+                        text: "Fun",
                         description:
                             "Lorem ipsum dolor sit amet dfnwriuf ehfbq neifhebv bvohviho iho hoih hs hc"),
                     const SizedBox(

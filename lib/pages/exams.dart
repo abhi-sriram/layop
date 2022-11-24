@@ -25,7 +25,7 @@ class _ExamsState extends State<Exams> {
         child: DefaultTabController(
           length: 2,
           child: Column(
-            children: [
+            children: const [
               TabBar(tabs: [
                 Tab(
                   child: KText(
