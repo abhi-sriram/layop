@@ -1,8 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import '../../data/puzzle_list_images.dart';
 import '../../data/puzzle_list_sound.dart';
 import '../../widget/k_button.dart';
 import 'score.dart';
@@ -15,7 +12,6 @@ class PuzzleSound extends StatefulWidget {
 }
 
 class _QuizState extends State<PuzzleSound> {
-  AudioPlayer player = AudioPlayer();
   final PageController _controller = PageController(initialPage: 0);
   bool isPressed = false;
   int score = 0;
@@ -149,6 +145,7 @@ class _QuizState extends State<PuzzleSound> {
     return KButtonPrimary(
       text: "Play",
       function: () async {
+        print(asset);
         final player = AudioCache(); // Create a player
         player.play(asset); // Play the sound
       },

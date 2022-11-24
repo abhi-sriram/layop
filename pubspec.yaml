@@ -50,6 +50,7 @@ dependencies:
   flutter_tts: ^3.6.2
   alan_voice: 3.0.0
   audioplayers: ^0.20.1
+  just_audio: ^0.9.30
 
 dev_dependencies:
   flutter_test:
