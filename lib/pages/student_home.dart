@@ -14,6 +14,8 @@ import 'package:layop/util/app_constant.dart';
 import 'package:layop/widget/k_height.dart';
 import 'package:layop/widget/k_text.dart';
 
+import 'puzzle/puzzle_page.dart';
+
 class ParentHome extends StatefulWidget {
   const ParentHome({super.key});
 
@@ -248,6 +250,16 @@ class _ParentHomeState extends State<ParentHome> {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const HistoryPage()));
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.history),
+            title: const Text('Puzzle'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PuzzlePage()));
               // Update the state of the app.
               // ...
             },
