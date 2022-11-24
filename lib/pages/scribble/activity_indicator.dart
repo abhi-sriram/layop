@@ -23,7 +23,7 @@ class Toast {
             onWillPop: () async => false,
             child: AlertDialog(
               shape: RoundedRectangleBorder(
-                  borderRadius:  BorderRadius.all(Radius.circular(8.0))),
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
               backgroundColor: Colors.black87,
               content: LoadingIndicator(text: text),
             ));
@@ -51,20 +51,20 @@ class LoadingIndicator extends StatelessWidget {
   Widget _getLoadingIndicator() {
     return Padding(
         child: SizedBox(
-            child: CircularProgressIndicator(strokeWidth: 3),
             width: 32,
-            height: 32),
+            height: 32,
+            child: CircularProgressIndicator(strokeWidth: 3)),
         padding: EdgeInsets.only(bottom: 16));
   }
 
   Widget _getHeading() {
     return const Padding(
+        padding: EdgeInsets.only(bottom: 4),
         child: Text(
           'Please wait …',
           style: TextStyle(color: Colors.white, fontSize: 16),
           textAlign: TextAlign.center,
-        ),
-        padding: EdgeInsets.only(bottom: 4));
+        ));
   }
 
   Widget _getText(String displayedText) {
