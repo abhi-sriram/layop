@@ -20,7 +20,7 @@ List<PuzzleModel> puzzleListSound = [
         "Bird": true,
         "Dog": false,
       },
-      "bird_chirping.mp3",
+      "birds_chirping.mp3",
       "image"),
   PuzzleModel(
       "What Animal is this ?",
