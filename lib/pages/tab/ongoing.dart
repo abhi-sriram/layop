@@ -1,5 +1,10 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:layop/pages/exam_page.dart';
+import 'package:layop/pages/quiz/attempt_exam_page.dart';
 import 'package:layop/util/app_constant.dart';
 import 'package:layop/widget/k_height.dart';
 import 'package:layop/widget/k_text.dart';
@@ -13,99 +18,80 @@ class Ongoing extends StatefulWidget {
 
 class _OngoingState extends State<Ongoing> {
   @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  List<Map<String, dynamic>> ongoingAssessments = [];
+  String error = "";
+
+  Future getData() async {
+    try {
+      final email = FirebaseAuth.instance.currentUser!.email;
+      log(email.toString());
+      final data = await _firestore.collection('student').doc(email).get();
+      final assessments = data['assessments'];
+      final snapshot = await FirebaseFirestore.instance
+          .collection('assessment')
+          // .where('id', whereNotIn: assessments)
+          .get();
+      // if (assessments.length == 0) {
+      //   assessments.add('no');
+      // }
+      if (ongoingAssessments.length > 0) {
+        // setState(() {
+        ongoingAssessments.clear();
+        // });
+      }
+      final docs = snapshot.docs;
+      for (final doc in docs) {
+        final data = doc.data();
+        ongoingAssessments.add(data);
+      }
+    } catch (e) {
+      log(e.toString());
+      setState(() => {error = e.toString()});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ExamPage(),
-                          ));
-                    },
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                            color: AppConstant.dangerColor,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(AppConstant
-                                                    .borderRadiusWidget))),
-                                        width: 40,
-                                        height: 40,
-                                        child: const Icon(
-                                          Icons.hourglass_bottom,
-                                          color: AppConstant.whiteTextColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 14,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      KText(
-                                        text: "Unit Test ${index + 1}",
-                                        size: AppConstant.titleText,
-                                        weight: FontWeight.normal,
-                                        color: AppConstant.tinyTextColor,
-                                      ),
-                                      const KText(
-                                        text: "Unit name",
-                                        size: AppConstant.leadingText,
-                                        weight: FontWeight.bold,
-                                        color: AppConstant.primaryColor,
-                                      ),
-                                      const KHeight(
-                                          height: AppConstant.largeSpace),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: const [
-                                          KText(
-                                              text: "time left ",
-                                              size: AppConstant.titleText),
-                                          KText(
-                                            text: " -12:14",
-                                            color: AppConstant.dangerColor,
-                                            weight: FontWeight.bold,
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-              itemCount: 1),
-        )
-      ],
+    return FutureBuilder(
+      builder: (ctx, data) {
+        if (data.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (data.hasError) {
+          return Center(child: Text(error));
+        }
+        return ListView.builder(
+          itemCount: ongoingAssessments.length,
+          itemBuilder: (ctx, index) {
+            return Card(
+              child: ListTile(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AttemptExamPage(
+                                data: ongoingAssessments[index]['data'],
+                                time: ongoingAssessments[index]['time'],
+                                id: ongoingAssessments[index]['id'],
+                              )));
+                },
+                title: KText(
+                  text: ongoingAssessments[index]['title'],
+                  color: AppConstant.primaryColor,
+                ),
+              ),
+            );
+          },
+        );
+      },
+      future: getData(),
     );
   }
 }

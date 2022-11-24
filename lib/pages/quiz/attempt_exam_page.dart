@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:layop/pages/quiz/data_provider.dart';
 import 'package:layop/pages/quiz/fill_in_blanks_widget.dart';
@@ -12,6 +14,13 @@ import 'package:layop/pages/quiz/true_false_widget.dart';
 
 class AttemptExamPage extends StatefulWidget {
   static const routeName = '/signin-signup/upcommingexam/exam/attempt';
+
+  final String data;
+  final int time;
+  final String id;
+
+  const AttemptExamPage(
+      {super.key, required this.data, required this.time, required this.id});
 
   @override
   _AttemptExamPageState createState() => _AttemptExamPageState();
@@ -27,6 +36,28 @@ class _AttemptExamPageState extends State<AttemptExamPage>
 
   String seconds = '00', minutes = '00', hours = '00';
 
+  void addHistoryOfStudent(
+      {required String data, required List<dynamic> selectedItems}) async {
+    try {
+      final email = FirebaseAuth.instance.currentUser!.email;
+      await FirebaseFirestore.instance
+          .collection('student')
+          .doc(email)
+          .collection('history')
+          .doc(widget.id)
+          .set({
+        'assessment': widget.data,
+        'time': DateTime.now().toString(),
+        'score': 0,
+        'total': 0,
+        'id': widget.id,
+        'selectedItems': selectedItems,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
     _timer = Timer.periodic(
@@ -35,10 +66,12 @@ class _AttemptExamPageState extends State<AttemptExamPage>
         () {
           if (duration < 1) {
             timer.cancel();
+
             Navigator.popAndPushNamed(context, FinalAnswersRevelaPage.routeName,
                 arguments: {
                   'answers': selectedItems,
                   'data': json,
+                  'id': widget.id,
                 });
           } else {
             duration = duration - 1;
@@ -130,7 +163,7 @@ class _AttemptExamPageState extends State<AttemptExamPage>
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (fromBackButton) {
                     setState(() {
                       _exit = true;
@@ -138,13 +171,15 @@ class _AttemptExamPageState extends State<AttemptExamPage>
                     Navigator.pop(context);
                   } else {
                     _timer.cancel();
+
                     // dispose();
                     Navigator.pop(context);
-                    Navigator.pushNamed(
+                    Navigator.popAndPushNamed(
                         context, FinalAnswersRevelaPage.routeName,
                         arguments: {
                           'answers': selectedItems,
                           'data': json,
+                          'id': widget.id,
                         });
                   }
                 },
@@ -173,8 +208,7 @@ class _AttemptExamPageState extends State<AttemptExamPage>
 
   late TabController _tabController;
   void setupQuestionsAndStartTimer() {
-    json =
-        JsonQuestionParser.fromJson(jsonDecode(DataProvider().jsonQuestions));
+    json = JsonQuestionParser.fromJson(jsonDecode(widget.data));
 
     _tabController = TabController(length: json.questions.length, vsync: this);
     totalLen = json.questions.length;

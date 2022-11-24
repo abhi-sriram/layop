@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:layop/pages/quiz/json_question_parser.dart';
@@ -16,6 +20,7 @@ class FinalAnswersRevelaPage extends StatefulWidget {
 class _FinalAnswersRevelaPageState extends State<FinalAnswersRevelaPage> {
   late List<dynamic> answers;
   late JsonQuestionParser jsonQuestionParser;
+  late String id;
   int total = 0, answerd = 0, correct = 0;
 
   findInsights() {
@@ -43,17 +48,50 @@ class _FinalAnswersRevelaPageState extends State<FinalAnswersRevelaPage> {
 
   int i = 0;
 
+  void addHistoryOfStudent(
+      {required String id,
+      required String data,
+      required List<dynamic> selectedItems,
+      required int total,
+      required int answerd,
+      required int correct}) async {
+    try {
+      final email = FirebaseAuth.instance.currentUser!.email;
+      await FirebaseFirestore.instance
+          .collection('student')
+          .doc(email)
+          .collection('history')
+          .doc(id)
+          .set({
+        'assessment': data,
+        'time': DateTime.now().toString(),
+        'score': 0,
+        'id': id,
+        'selectedItems': json.encode(selectedItems),
+        'total': total,
+        'answerd': answerd,
+        'correct': correct,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // bool isLoaded = false;
+
   @override
   Widget build(BuildContext context) {
     Map<String, Object> modalRoute =
         ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
     answers = modalRoute['answers'] as List<dynamic>;
     jsonQuestionParser = modalRoute['data'] as JsonQuestionParser;
+    id = modalRoute['id'] as String;
     if (i == 0) {
       findInsights();
       setState(() {
         i++;
       });
+      
     }
     return Scaffold(
       appBar: AppBar(

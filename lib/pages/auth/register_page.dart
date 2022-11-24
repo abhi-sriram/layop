@@ -50,6 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'role': 'student',
             'uid': userCredential.user!.uid,
             'age': int.parse(_ageController.text),
+            'assessments':[],
           });
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const StudentHome()));

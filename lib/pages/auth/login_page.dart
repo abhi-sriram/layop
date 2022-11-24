@@ -42,6 +42,9 @@ class _LoginPageState extends State<LoginPage> {
           password: textPasswordController.text.trim());
       navigatorKey.currentState!.popUntil((route) => route.isFirst);
       // ignore: use_build_context_synchronously
+      setState(() {
+        isLoading = false;
+      });
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(

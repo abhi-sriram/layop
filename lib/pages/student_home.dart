@@ -62,13 +62,13 @@ class _StudentHomeState extends State<StudentHome> {
               builder: (context) => StudentHome(),
             ));
         break;
-      case 'syllabus':
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SyllabusPage(),
-            ));
-        break;
+      // case 'syllabus':
+      //   Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => SyllabusPage(),
+      //       ));
+      //   break;
       case 'teacher':
         Navigator.push(
             context,
@@ -124,39 +124,39 @@ class _StudentHomeState extends State<StudentHome> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  KHeight(height: AppConstant.largeSpace),
-                  KText(
+                  const KHeight(height: AppConstant.largeSpace),
+                  const KText(
                       text: "Habib folly Messan",
                       size: AppConstant.leadingText,
                       weight: FontWeight.w500),
-                  KHeight(height: AppConstant.largeSpace),
-                  KText(
+                  const KHeight(height: AppConstant.largeSpace),
+                  const KText(
                     text: "Welcome and learn at your own pace",
                     size: AppConstant.leadingText,
                   ),
-                  KHeight(height: AppConstant.largeSpace),
-                  Divider(
+                  const KHeight(height: AppConstant.largeSpace),
+                  const Divider(
                     thickness: 1,
                     endIndent: 100,
                   ),
-                  KText(
+                  const KText(
                       color: AppConstant.bodyTextColor,
                       text: "what do you want to do today ?",
                       size: AppConstant.normalText,
                       weight: FontWeight.w500),
-                  KHeight(height: AppConstant.largeSpace),
-                  MenuStudent(
-                      imagePath: 'assets/images/lesson.png',
-                      titre: "Syllabus",
-                      function: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SyllabusPage(),
-                            ));
-                      },
-                      description: "learn your lessons"),
-                  KHeight(height: AppConstant.largeSpace),
+                  const KHeight(height: AppConstant.largeSpace),
+                  // MenuStudent(
+                  //     imagePath: 'assets/images/lesson.png',
+                  //     titre: "Syllabus",
+                  //     function: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //             builder: (context) => const SyllabusPage(),
+                  //           ));
+                  //     },
+                  //     description: "learn your lessons"),
+                  // KHeight(height: AppConstant.largeSpace),
                   MenuStudent(
                       function: () => Navigator.push(
                           context,
@@ -166,7 +166,7 @@ class _StudentHomeState extends State<StudentHome> {
                       imagePath: 'assets/images/exams.png',
                       titre: "Exams",
                       description: "to test your performance"),
-                  KHeight(height: AppConstant.largeSpace),
+                  const KHeight(height: AppConstant.largeSpace),
                   MenuStudent(
                       function: () => Navigator.push(
                           context,
@@ -176,7 +176,7 @@ class _StudentHomeState extends State<StudentHome> {
                       imagePath: 'assets/images/progress.png',
                       titre: "Progress",
                       description: "to see your improuvement"),
-                  KHeight(height: AppConstant.largeSpace),
+                  const KHeight(height: AppConstant.largeSpace),
                   MenuStudent(
                       function: () => Navigator.push(
                           context,
@@ -186,7 +186,7 @@ class _StudentHomeState extends State<StudentHome> {
                       imagePath: 'assets/images/exams.png',
                       titre: "Scribble pad",
                       description: "have fun"),
-                  KHeight(height: AppConstant.largeSpace),
+                  const KHeight(height: AppConstant.largeSpace),
                   MenuStudent(
                       function: () => Navigator.push(
                           context,
