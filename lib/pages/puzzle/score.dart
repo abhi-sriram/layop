@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:layop/pages/student_home.dart';
+import 'package:layop/widget/k_button_primary.dart';
+import 'package:layop/widget/k_height.dart';
 
 class Score extends StatefulWidget {
   final int? score;
@@ -13,10 +16,27 @@ class _ScoreState extends State<Score> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 50),
-        child: Center(child: Text("OK ${widget.score}")),
-      )),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Your Score is ${widget.score}'),
+          KHeight(height: 10),
+          KButtonPrimary(
+            text: "Back to home page",
+            function: () => {redirect()},
+          )
+        ],
+      )
+
+          //   child: Padding(
+          // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 50),
+          // child: Center(child: Text("OK ${widget.score}")),
+          ),
     );
+  }
+
+  void redirect() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const StudentHome()));
   }
 }
