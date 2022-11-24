@@ -15,7 +15,7 @@ class _ProgressPageState extends State<ProgressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Progress"),
+        title: Text("Student Progress"),
       ),
       body: ListView(
         padding: EdgeInsets.all(10),

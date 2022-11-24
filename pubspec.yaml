@@ -42,11 +42,8 @@ dependencies:
   firebase_core: ^2.1.1
   firebase_auth: ^4.1.1
   cloud_firestore: ^4.0.4
-  firebase_database: ^10.0.4
   google_mlkit_digital_ink_recognition: ^0.6.0
   image_picker:
-  learning_text_recognition: ^0.0.4
-  provider: ^6.0.4
   flutter_tts: ^3.6.2
   alan_voice: 3.0.0
 

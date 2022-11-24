@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:layop/main.dart';
+import 'package:layop/pages/auth/register_page.dart';
 import 'package:layop/pages/student_home.dart';
+import 'package:layop/service/auth_service.dart';
 import 'package:layop/util/app_constant.dart';
 
 import 'package:layop/widget/k_button.dart';
@@ -17,8 +21,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textEmailController = TextEditingController();
   TextEditingController textPasswordController = TextEditingController();
-  String? errorMessage = '';
-  bool? isLoading = false;
+  String errorMessage = '';
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -27,91 +31,94 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  // Future<void> login() async {
-  //   showDialog(
-  //       barrierDismissible: false,
-  //       context: context,
-  //       builder: (conext) => AlertDialog(
-  //             title: Column(children: const <Widget>[
-  //               Text("please wait ..."),
-  //               KHeight(height: 10),
-  //               LinearProgressIndicator(),
-  //             ]),
-  //           ));
-  //   try {
-  //     await AuthService.signIn(
-  //         email: textEmailController.text,
-  //         password: textPasswordController.text);
-  //     navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  //     // ignore: use_build_context_synchronously
-  //     Navigator.pushReplacement(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => const ParentHome(),
-  //         ));
-  //   } on FirebaseAuthException catch (e) {
-  //     setState(() {
-  //       errorMessage = e.message;
-  //     });
+  Future<void> login() async {
+    setState(() {
+      isLoading = true;
+    });
 
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(SnackBar(content: Text(errorMessage.toString())));
-  //   }
-  // }
+    try {
+      await AuthService.signIn(
+          email: textEmailController.text.trim(),
+          password: textPasswordController.text.trim());
+      navigatorKey.currentState!.popUntil((route) => route.isFirst);
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const StudentHome(),
+          ));
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message.toString();
+      });
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(errorMessage.toString())));
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: AppConstant.horizontalPagePadding,
-                vertical: AppConstant.verticalPagePadding),
-            child: SingleChildScrollView(
-              child: Column(children: [
-                Row(
-                  children: const [
-                    KText(
-                      text: "Login",
-                      color: AppConstant.titleTextColor,
-                      size: AppConstant.leadingText,
-                      weight: FontWeight.w800,
-                    ),
-                  ],
-                ),
-                const KHeight(height: AppConstant.largeSpace),
-                Row(
-                  children: const [
-                    Flexible(
-                      child: KText(
-                        color: AppConstant.bodyTextColor,
-                        text: "Enter your credential to connect you in the app",
-                        size: AppConstant.informationText,
-                        weight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                const KHeight(height: AppConstant.largeSpace),
-                KFormField(
-                  controller: textEmailController,
-                  hint: "Enter your email",
-                ),
-                const KHeight(height: AppConstant.largeSpace),
-                KFormField(
-                  controller: textPasswordController,
-                  hint: "Enter your password",
-                ),
-                const KHeight(height: AppConstant.largeSpace),
-                KButtonPrimary(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Login"),
+      ),
+      body: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppConstant.horizontalPagePadding,
+              vertical: AppConstant.verticalPagePadding),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Row(
+                children: const [
+                  KText(
                     text: "Login",
-                    function: () => Navigator.pushReplacement(
+                    color: AppConstant.titleTextColor,
+                    size: AppConstant.leadingText,
+                    weight: FontWeight.w800,
+                  ),
+                ],
+              ),
+              const KHeight(height: AppConstant.largeSpace),
+              Row(
+                children: const [
+                  Flexible(
+                    child: KText(
+                      color: AppConstant.bodyTextColor,
+                      text: "Enter your credential to connect you in the app",
+                      size: AppConstant.informationText,
+                      weight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              const KHeight(height: AppConstant.largeSpace),
+              KFormField(
+                controller: textEmailController,
+                hint: "Enter your email",
+              ),
+              const KHeight(height: AppConstant.largeSpace),
+              KFormField(
+                controller: textPasswordController,
+                hint: "Enter your password",
+              ),
+              const KHeight(height: AppConstant.largeSpace),
+              if (!isLoading) KButtonPrimary(text: "Login", function: login),
+              if (isLoading) const Center(child: CircularProgressIndicator()),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ParentHome()))),
-              ]),
-            )),
-      ),
+                            builder: (context) => const RegisterPage()));
+                  },
+                  child: const Text("Register"))
+            ]),
+          )),
     );
   }
 }

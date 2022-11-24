@@ -13,9 +13,15 @@ class Data {
 
 class PieAssData {
   static List<Data> assData = [
-
-    Data(type: "devoir", precent: 40, color: const Color(0xffff0000)),
-    Data(type: "examen", precent: 30, color: const Color.fromARGB(255, 23, 0, 228)),
-    Data(type: "examen", precent: 30, color: const Color.fromARGB(255, 14, 78, 1)),
+    Data(
+        type: "Montessori Method", precent: 40, color: const Color(0xffff0000)),
+    Data(
+        type: "Coperative Learning",
+        precent: 30,
+        color: const Color.fromARGB(255, 23, 0, 228)),
+    Data(
+        type: "Teacher Centerd Instruction",
+        precent: 30,
+        color: const Color.fromARGB(255, 14, 78, 1)),
   ];
 }

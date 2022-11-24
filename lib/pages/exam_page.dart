@@ -13,16 +13,31 @@ class ExamPage extends StatefulWidget {
 
 class _ExamPageState extends State<ExamPage> {
   List<QuizModel> quiz = [
-    QuizModel(question: 'qstn', options: ['opt1', 'opt2', 'opt3'], answer: 0),
-    QuizModel(question: 'qstn', options: ['opt1', 'opt2', 'opt3'], answer: 0),
-    QuizModel(question: 'qstn', options: ['opt1', 'opt2', 'opt3'], answer: 0),
-    QuizModel(question: 'qstn', options: ['opt1', 'opt2', 'opt3'], answer: 0),
+    QuizModel(question: 'What is the capital of India?', options: [
+          "New Delhi",
+          "Mumbai",
+          "Kolkata",
+          "Chennai",
+        ], answer: 0),
+    QuizModel(question: 'What is 2 + 2', options: ['4', '5', '6','7'], answer: 0),
+   QuizModel(
+        question: 'What is the capital of India?',
+        options: [
+          "New Delhi",
+          "Mumbai",
+          "Kolkata",
+          "Chennai",
+        ],
+        answer: 0),
+    QuizModel(
+        question: 'What is 2 + 2', options: ['4', '5', '6', '7'], answer: 0),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("Exam"),
+          actions: [],
         ),
         body: ListView.builder(
           itemBuilder: (ctx, ind) {

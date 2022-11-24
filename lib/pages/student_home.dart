@@ -14,15 +14,15 @@ import 'package:layop/util/app_constant.dart';
 import 'package:layop/widget/k_height.dart';
 import 'package:layop/widget/k_text.dart';
 
-class ParentHome extends StatefulWidget {
-  const ParentHome({super.key});
+class StudentHome extends StatefulWidget {
+  const StudentHome({super.key});
 
   @override
-  State<ParentHome> createState() => _ParentHomeState();
+  State<StudentHome> createState() => _StudentHomeState();
 }
 
-class _ParentHomeState extends State<ParentHome> {
-  _ParentHomeState() {
+class _StudentHomeState extends State<StudentHome> {
+  _StudentHomeState() {
     /// Init Alan Button with project key from Alan Studio
     AlanVoice.addButton(
         "3604cbfc4d26a19c4036ffbe5b77e1d72e956eca572e1d8b807a3e2338fdd0dc/stage",
@@ -57,7 +57,7 @@ class _ParentHomeState extends State<ParentHome> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ParentHome(),
+              builder: (context) => StudentHome(),
             ));
         break;
       case 'syllabus':
