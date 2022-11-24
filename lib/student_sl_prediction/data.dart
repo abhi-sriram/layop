@@ -1,5 +1,5 @@
 class Data {
-  static const List<Map<String,dynamic>> questionsFiveAndSix = [
+  static const List<Map<String, dynamic>> questionsFiveAndSix = [
     {
       'questionText': ' What animal hibernates during the winter? ',
       'answers': [
@@ -87,7 +87,7 @@ class Data {
     },
   ];
 
-  static const List<Map<String,dynamic>> questionsSevenAndEight = [
+  static const List<Map<String, dynamic>> questionsSevenAndEight = [
     {
       'questionText': '  How many sides does a hexagon have? ',
       'answers': [
@@ -111,7 +111,7 @@ class Data {
       'questionText':
           'Hedgehog is weaker than a wolf. But hedgehog is stronger than a mouse. Who is the weakest?',
       'answers': [
-        {'text': 'Hedgehog', 'score': 8},
+        {'text': 'Hedgehog', 'score': 3},
         {'text': 'Mouse', 'score': 9},
         {'text': 'Wolf', 'score': 7},
       ],
@@ -120,16 +120,16 @@ class Data {
       'questionText':
           ' If you rearrange the letters "KOMENY", you would have the name of a:  ',
       'answers': [
-        {'text': 'Ocean', 'score': 8},
-        {'text': 'Animal', 'score': 9},
-        {'text': 'Country', 'score': 7},
+        {'text': 'Ocean', 'score': 3},
+        {'text': 'Animal', 'score': 3},
+        {'text': 'Country', 'score': 9},
       ],
     },
     {
       'questionText': ' What color do you get when you mix yellow and blue?  ',
       'answers': [
-        {'text': 'red', 'score': 7},
-        {'text': 'white', 'score': 8},
+        {'text': 'red', 'score': 3},
+        {'text': 'white', 'score': 3},
         {'text': 'green', 'score': 9},
         {'text': 'brown', 'score': 6},
         {'text': 'pink', 'score': 5},
@@ -139,16 +139,16 @@ class Data {
       'questionText':
           'Hedgehog is weaker than a wolf. But hedgehog is stronger than a mouse. Who is the weakest? ',
       'answers': [
-        {'text': 'Hedgehog', 'score': 9},
-        {'text': 'Mouse', 'score': 8},
+        {'text': 'Hedgehog', 'score': 3},
+        {'text': 'Mouse', 'score': 9},
         {'text': 'Wolf', 'score': 7},
       ],
     },
     {
       'questionText': ' To pound a nail, you need a: ',
       'answers': [
-        {'text': 'scissors', 'score': 7},
-        {'text': 'knife', 'score': 8},
+        {'text': 'scissors', 'score': 3},
+        {'text': 'knife', 'score': 3},
         {'text': 'hammer', 'score': 9},
         {'text': 'shovel', 'score': 6},
         {'text': 'saw', 'score': 5},
@@ -158,7 +158,7 @@ class Data {
       'questionText':
           ' If July 3rd is a Tuesday, which day of the week would be July 6th? ',
       'answers': [
-        {'text': 'Wednesday', 'score': 7},
+        {'text': 'Wednesday', 'score': 3},
         {'text': 'Friday', 'score': 8},
         {'text': 'Saturday', 'score': 9},
       ],
@@ -167,7 +167,7 @@ class Data {
       'questionText':
           'Which one of the four is least like the other three? February, March, April, May ',
       'answers': [
-        {'text': 'february', 'score': 6},
+        {'text': 'february', 'score': 3},
         {'text': 'march', 'score': 8},
         {'text': 'april', 'score': 7},
         {
@@ -178,14 +178,15 @@ class Data {
     },
   ];
 
-  static const List<Map<String,dynamic>> questionsNineAndTen = [
+  static const List<Map<String, dynamic>> questionsNineAndTen = [
     {
-      'questionText': ' Which word disrupts the ordering? Car, Tree,Table, Furniture, Coconut ',
+      'questionText':
+          ' Which word disrupts the ordering? Car, Tree,Table, Furniture, Coconut ',
       'answers': [
         {'text': 'coconut', 'score': 3},
         {'text': 'furniture', 'score': 5},
         {'text': 'table', 'score': 6},
-         {'text': 'car', 'score': 4},
+        {'text': 'car', 'score': 4},
       ],
     },
     {
@@ -195,7 +196,7 @@ class Data {
         {'text': '19', 'score': 3},
         {'text': '20', 'score': 5},
         {'text': '21', 'score': 6},
-         {'text': '22', 'score': 4},
+        {'text': '22', 'score': 4},
       ],
     },
     {
@@ -207,8 +208,7 @@ class Data {
       ],
     },
     {
-      'questionText':
-          'Which is different? Hat, Pen, Car, Cat ',
+      'questionText': 'Which is different? Hat, Pen, Car, Cat ',
       'answers': [
         {'text': 'hat', 'score': 6},
         {'text': 'car', 'score': 8},
@@ -217,8 +217,7 @@ class Data {
       ],
     },
     {
-      'questionText':
-          '  Which is different?Dog, Tiger, Sheep, Whale ',
+      'questionText': '  Which is different?Dog, Tiger, Sheep, Whale ',
       'answers': [
         {'text': 'dog', 'score': 6},
         {'text': 'tiger', 'score': 8},
@@ -266,24 +265,24 @@ class Data {
     },
   ];
 
-  static const List<Map<String,dynamic>> questionsElevenAndTwelve = [
+  static const List<Map<String, dynamic>> questionsElevenAndTwelve = [
     {
-      'questionText': 'Which number logically follows this series? 3, 7,12,18, 25, 33, 42,? ',
+      'questionText':
+          'Which number logically follows this series? 3, 7,12,18, 25, 33, 42,? ',
       'answers': [
         {'text': '48', 'score': 3},
         {'text': '50', 'score': 5},
         {'text': '52', 'score': 6},
-         {'text': '54', 'score': 4},
+        {'text': '54', 'score': 4},
       ],
     },
     {
-      'questionText':
-          'What will be the next number ? 32,16,8,4,2 ? ',
+      'questionText': 'What will be the next number ? 32,16,8,4,2 ? ',
       'answers': [
         {'text': '4', 'score': 3},
         {'text': '3', 'score': 5},
         {'text': '2', 'score': 6},
-         {'text': '1', 'score': 4},
+        {'text': '1', 'score': 4},
       ],
     },
     {
@@ -295,8 +294,7 @@ class Data {
       ],
     },
     {
-      'questionText':
-          'Which is different? Hat, Pen, Car, Cat ',
+      'questionText': 'Which is different? Hat, Pen, Car, Cat ',
       'answers': [
         {'text': 'hat', 'score': 6},
         {'text': 'car', 'score': 8},
@@ -305,8 +303,7 @@ class Data {
       ],
     },
     {
-      'questionText':
-          ' What is the value of d ? ABCD= 3257 , abcd:214? ',
+      'questionText': ' What is the value of d ? ABCD= 3257 , abcd:214? ',
       'answers': [
         {'text': '6', 'score': 6},
         {'text': '5', 'score': 8},
@@ -342,11 +339,11 @@ class Data {
         {'text': 'T', 'score': 8},
         {'text': 'U', 'score': 7},
         {'text': 'X', 'score': 7},
-
       ],
     },
     {
-      'questionText': 'Which word logically follows this series? Eat,Boat,Water, Jacket, puzzle, ? ',
+      'questionText':
+          'Which word logically follows this series? Eat,Boat,Water, Jacket, puzzle, ? ',
       'answers': [
         {'text': ' Accept  ', 'score': 6},
         {'text': 'Acrobat    ', 'score': 8},
@@ -355,6 +352,4 @@ class Data {
       ],
     },
   ];
-
-
 }
